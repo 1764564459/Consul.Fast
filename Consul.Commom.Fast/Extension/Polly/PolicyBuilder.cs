@@ -7,7 +7,7 @@ namespace Consul.Commom.Fast.Extension.Polly
 {
     public class PolicyBuilder
     {
-        public Policy CreatePolly()
+        public static Policy CreatePolly()
         {
             //超时
             var timeout = Policy.Timeout(5);//Handle<TimeoutRejectedException>();

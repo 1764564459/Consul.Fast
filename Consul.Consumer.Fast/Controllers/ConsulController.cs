@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Consul.Commom.Fast.Extension.Polly;
 using Consul.Consumer.Fast.Extension.Consul;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +23,13 @@ namespace Consul.Consumer.Fast.Controllers
         [HttpGet]
         public  IActionResult Consumer()
         {
-            var service = _consul.Resolve();
-            return Ok($"service:{ JsonConvert.SerializeObject(service)}");
+            var polly= PolicyBuilder.CreatePolly();
+            polly.Execute(() =>
+            {
+                var service = _consul.Resolve();
+                //service.Address
+            });
+            return Ok(StatusCodes.Status200OK);
         }
     }
 }
