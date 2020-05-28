@@ -26,7 +26,7 @@ namespace Consul.Commom.Fast.Extension.Consul.Discovery
             //可添加多个Configure
             services.Configure<ConsulConfig>(option);
             services.AddSingleton<ConsulDiscovery>();
-            services.AddSingleton<ConsulCheck>();
+            services.AddSingleton<ConsulCheckPolicy>();
             //services.Configure<int>(conf=>conf.);
             //services.AddOptions()
             return services;
@@ -39,7 +39,7 @@ namespace Consul.Commom.Fast.Extension.Consul.Discovery
         /// <returns></returns>
         public static IApplicationBuilder UseConsulClient(this IApplicationBuilder app)
         {
-            var consul = app.ApplicationServices.GetRequiredService<ConsulCheck>();
+            var consul = app.ApplicationServices.GetRequiredService<ConsulCheckPolicy>();
             consul.StartAsync().Wait();
             return app;
         }

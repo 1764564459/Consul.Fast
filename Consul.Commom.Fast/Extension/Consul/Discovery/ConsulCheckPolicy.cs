@@ -13,7 +13,7 @@ namespace Consul.Commom.Fast.Extension.Consul.Discovery
     /// <summary>
     /// 服务检查
     /// </summary>
-    public class ConsulCheck : ConsulDiscovery
+    public class ConsulCheckPolicy : ConsulDiscovery
     {
         /// <summary>
         /// 配置信息
@@ -29,7 +29,7 @@ namespace Consul.Commom.Fast.Extension.Consul.Discovery
         /// 构造函数
         /// </summary>
         /// <param name="config"></param>
-        public ConsulCheck(IOptions<ConsulConfig> config) : base(config)
+        public ConsulCheckPolicy(IOptions<ConsulConfig> config) : base(config)
         {
             _config = config.Value;
             _tokenSource = new CancellationTokenSource();
